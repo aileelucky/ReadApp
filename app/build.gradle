@@ -2,16 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
 apply plugin: 'org.greenrobot.greendao'
-apply plugin: 'io.fabric'
 apply plugin: "de.timfreiheit.resourceplaceholders"
 
-static def releaseTime() {
-    return new Date().format("yy.MMddHH", TimeZone.getTimeZone("GMT+8"))
-}
 
-def name = "YueDu"
-def version = "2." + releaseTime()
-def gitCommits = Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
+def name = "GUDU"
+def version ='1.0.0'
 
 android {
     compileSdkVersion 28
@@ -29,7 +24,7 @@ android {
         applicationId "com.gedoor.monkeybook"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 10000 + gitCommits
+        versionCode 1
         versionName version
         project.ext.set("archivesBaseName", name + "_" + version)
         multiDexEnabled true
@@ -146,6 +141,11 @@ dependencies {
         exclude group: 'xmlpull'
     }
 
+    //日常工具类
+    implementation 'ru.noties.markwon:core:3.0.2'
+    implementation('com.uama.utils:uama-util:1.0.8') {
+        exclude group: 'com.android.support'
+    }
 }
 
 greendao {
@@ -154,7 +154,7 @@ greendao {
     targetGenDir 'src/main/java'
 }
 
-apply plugin: 'com.google.gms.google-services'
+//apply plugin: 'com.google.gms.google-services'
 repositories {
     mavenCentral()
 }

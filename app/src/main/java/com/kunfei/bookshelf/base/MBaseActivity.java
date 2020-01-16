@@ -2,6 +2,7 @@
 package com.kunfei.bookshelf.base;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -37,9 +38,11 @@ public abstract class MBaseActivity<T extends IPresenter> extends BaseActivity<T
     public final SharedPreferences preferences = MApplication.getConfigPreferences();
     protected ImmersionBar mImmersionBar;
     private Snackbar snackbar;
+    public Context mActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mActivity = this;
         initTheme();
         super.onCreate(savedInstanceState);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

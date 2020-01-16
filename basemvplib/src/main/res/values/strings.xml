@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">BaseMvpLib</string>
+    <string name="can_not_support">暂不支持该功能</string>
 </resources>

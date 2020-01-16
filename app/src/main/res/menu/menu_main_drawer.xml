@@ -6,18 +6,21 @@
             android:id="@+id/action_book_source_manage"
             android:icon="@drawable/ic_book_source_manage"
             android:title="@string/book_source_manage"
+            android:visible="false"
             app:tint="@color/tv_text_default" />
 
         <item
             android:id="@+id/action_replace_rule"
             android:icon="@drawable/ic_find_replace"
             android:title="@string/replace_rule_title"
+            android:visible="false"
             app:tint="@color/tv_text_default" />
 
         <item
             android:id="@+id/action_download"
             android:icon="@drawable/ic_download_line"
             android:title="@string/action_download"
+            android:visible="false"
             app:tint="@color/tv_text_default" />
     </group>
 
@@ -55,12 +58,14 @@
             android:id="@+id/action_backup"
             android:icon="@drawable/ic_backup"
             android:title="@string/backup"
+            android:visible="false"
             app:tint="@color/tv_text_default" />
 
         <item
             android:id="@+id/action_restore"
             android:icon="@drawable/ic_restore"
             android:title="@string/restore"
+            android:visible="false"
             app:tint="@color/tv_text_default" />
     </group>
 

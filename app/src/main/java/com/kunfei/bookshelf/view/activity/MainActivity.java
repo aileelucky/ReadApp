@@ -83,10 +83,10 @@ public class MainActivity extends BaseTabActivity<MainContract.Presenter> implem
     CoordinatorLayout mainView;
     @BindView(R.id.card_search)
     CardView cardSearch;
+    AppBarLayout mAppBarLayout;
 
     private AppCompatImageView vwNightTheme;
     private int group;
-    private boolean viewIsList;
     private ActionBarDrawerToggle mDrawerToggle;
     private MoDialogHUD moDialogHUD;
     private long exitTime = 0;
@@ -159,7 +159,6 @@ public class MainActivity extends BaseTabActivity<MainContract.Presenter> implem
 
     @Override
     protected void initData() {
-        viewIsList = preferences.getBoolean("bookshelfIsList", true);
         mTitles = new String[]{getString(R.string.bookshelf), getString(R.string.find)};
     }
 
@@ -210,6 +209,7 @@ public class MainActivity extends BaseTabActivity<MainContract.Presenter> implem
         initDrawer();
         initTabLayout();
         upGroup(group);
+        mAppBarLayout = mainView.findViewById(R.id.action_bar);
         moDialogHUD = new MoDialogHUD(this);
         if (!preferences.getBoolean("behaviorMain", true)) {
             AppBarLayout.LayoutParams params = (AppBarLayout.LayoutParams) toolbar.getLayoutParams();
@@ -459,6 +459,12 @@ public class MainActivity extends BaseTabActivity<MainContract.Presenter> implem
                 if (getBookListFragment() != null) {
                     getBookListFragment().setArrange(true);
                 }
+                CoordinatorLayout.Behavior behavior = ((CoordinatorLayout.LayoutParams) mAppBarLayout.getLayoutParams()).getBehavior();
+                if (behavior instanceof AppBarLayout.Behavior) {
+                    AppBarLayout.Behavior appBarLayoutBehavior = (AppBarLayout.Behavior) behavior;
+                        int hight= mAppBarLayout.getHeight();
+                        appBarLayoutBehavior.setTopAndBottomOffset(-hight);//快速滑动实现吸顶效果
+                }
                 break;
             case R.id.action_web_start:
                 WebService.startThis(this);
@@ -633,7 +639,7 @@ public class MainActivity extends BaseTabActivity<MainContract.Presenter> implem
                     .putInt("versionCode", MApplication.getVersionCode())
                     .apply();
             //更新日志
-            moDialogHUD.showAssetMarkdown("updateLog.md");
+//            moDialogHUD.showAssetMarkdown("updateLog.md");
         }
     }
 

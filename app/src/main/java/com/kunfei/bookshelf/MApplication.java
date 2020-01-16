@@ -52,7 +52,7 @@ public class MApplication extends Application {
     }
 
     public static String getVersionName() {
-        return versionName;
+        return BuildConfig.VERSION_NAME;
     }
 
     public static Resources getAppResources() {
